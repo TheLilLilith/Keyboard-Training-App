@@ -1,0 +1,150 @@
+﻿<UserControl x:Class="KeyboardTrainingApp.KeyboardControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:KeyboardTrainingApp"
+             mc:Ignorable="d" 
+             d:DesignHeight="450"  d:DesignWidth="800" PreviewKeyDown="UserControl_PreviewKeyDown" KeyUp="UserControl_PreviewKeyUp" Focusable="True">
+    <UserControl.Resources>
+        <Storyboard x:Key="ButtonDownAnimation">
+            <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
+                        To="White" Duration="0:0:0.2" />
+            <ColorAnimation Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)"
+                        To="Black" Duration="0:0:0.2" />
+            <DoubleAnimation Storyboard.TargetProperty="FontSize"
+                         To="16" Duration="0:0:0.1" />
+        </Storyboard>
+        <Storyboard x:Key="ButtonUpAnimation">
+            <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
+                        To="Black" Duration="0:0:0.2" />
+            <ColorAnimation Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)"
+                        To="White" Duration="0:0:0.2" />
+            <DoubleAnimation Storyboard.TargetProperty="FontSize"
+                         To="14" Duration="0:0:0.2" />
+        </Storyboard>
+        <Storyboard x:Key="MouseEnterAnimation">
+            <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
+                        To="#306585" Duration="0:0:0.2" />
+            <ColorAnimation Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)"
+                        To="White" Duration="0:0:0.2" />
+        </Storyboard>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Width" Value="50"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="IsHitTestVisible" Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="PreviewMouseDown">
+                    <BeginStoryboard Storyboard="{StaticResource ButtonDownAnimation}" />
+                </EventTrigger>
+
+                <EventTrigger RoutedEvent="PreviewMouseUp">
+                    <BeginStoryboard Storyboard="{StaticResource ButtonUpAnimation}" />
+                    
+                </EventTrigger>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <BeginStoryboard Storyboard="{StaticResource MouseEnterAnimation}" />
+                </EventTrigger>
+
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <BeginStoryboard Storyboard="{StaticResource ButtonUpAnimation}" />
+                </EventTrigger>
+                
+                
+
+            </Style.Triggers>
+
+        </Style>
+    </UserControl.Resources>
+    <Grid Name="KeyboardControlGrid">
+        <StackPanel Name="KeyButtonsPanel">
+            <WrapPanel>
+                <Button Name="buttonMult0" Content="`" Tag="Oem3" Click="Button_Click"  Style="{StaticResource ButtonStyle}"/>
+                <Button Name="buttonMult01" Content="1" Tag="D1" Click="Button_Click"  Style="{StaticResource ButtonStyle}"/>
+                <Button Name="buttonMult02" Content="2" Tag="D2" Click="Button_Click"  Style="{StaticResource ButtonStyle}"/>
+                <Button Name="buttonMult03" Content="3" Tag="D3" Click="Button_Click"  Style="{StaticResource ButtonStyle}"/>
+                <Button Name="buttonMult04" Content="4" Tag="D4" Click="Button_Click"  Style="{StaticResource ButtonStyle}"/>
+                <Button Name="buttonMult05" Content="5" Tag="D5" Click="Button_Click"  Style="{StaticResource ButtonStyle}"/>
+                <Button Name="buttonMult06" Content="6" Tag="D6" Click="Button_Click"  Style="{StaticResource ButtonStyle}"/>
+                <Button Name="buttonMult07" Content="7" Tag="D7" Click="Button_Click"  Style="{StaticResource ButtonStyle}"/>
+                <Button Name="buttonMult08" Content="8" Tag="D8" Click="Button_Click"  Style="{StaticResource ButtonStyle}"/>
+                <Button Name="buttonMult09" Content="9" Tag="D9" Click="Button_Click"  Style="{StaticResource ButtonStyle}"/>
+                <Button Name="buttonMult10" Content="0" Tag="D0" Click="Button_Click"  Style="{StaticResource ButtonStyle}"/>
+                <Button Name="buttonMult11" Content="-" Tag="OemMinus" Click="Button_Click"  Style="{StaticResource ButtonStyle}"/>
+                <Button Name="buttonMult12" Content="=" Tag="OemPlus"  Click="Button_Click"  Style="{StaticResource ButtonStyle}"/>
+                <Button Name="buttonBackspace" Content="Backspace" Tag="Back" Width="90" Click="Button_Click"  Style="{StaticResource ButtonStyle}"/>
+            </WrapPanel>
+            <WrapPanel>
+                <Button Name="buttonTab" Content="Tab" Tag="Tab" Width="90" Click="Button_Click"  Style="{StaticResource ButtonStyle}"/>
+                <WrapPanel Tag="Letters">
+                    <Button Name="buttonQ" Content="q" Tag="Q" Click="Button_Click"  Style="{StaticResource ButtonStyle}"/>
+                    <Button Name="buttonW" Content="w" Tag="W" Click="Button_Click"  Style="{StaticResource ButtonStyle}"/>
+                    <Button Name="buttonE" Content="e" Tag="E" Click="Button_Click"  Style="{StaticResource ButtonStyle}"/>
+                    <Button Name="buttonR" Content="r" Tag="R" Click="Button_Click"  Style="{StaticResource ButtonStyle}"/>
+                    <Button Name="buttonT" Content="t" Tag="T" Click="Button_Click"  Style="{StaticResource ButtonStyle}"/>
+                    <Button Name="buttonY" Content="y" Tag="Y" Click="Button_Click"  Style="{StaticResource ButtonStyle}"/>
+                    <Button Name="buttonU" Content="u" Tag="U" Click="Button_Click"  Style="{StaticResource ButtonStyle}"/>
+                    <Button Name="buttonI" Content="i" Tag="I" Click="Button_Click"  Style="{StaticResource ButtonStyle}"/>
+                    <Button Name="buttonO" Content="o" Tag="O" Click="Button_Click"  Style="{StaticResource ButtonStyle}"/>
+                    <Button Name="buttonP" Content="p" Tag="P" Click="Button_Click"  Style="{StaticResource ButtonStyle}"/>
+                </WrapPanel>
+                <Button Name="buttonMult" Content="[" Tag="OemOpenBrackets" Click="Button_Click"  Style="{StaticResource ButtonStyle}"/>
+                <Button Name="buttonMult2" Content="]" Tag="Oem6" Click="Button_Click" Style="{StaticResource ButtonStyle}"/>
+                <Button Name="buttonMult3" Content="\" Tag="Oem5" Click="Button_Click" Style="{StaticResource ButtonStyle}"/>
+            </WrapPanel>
+            <WrapPanel>
+                <Button Name="buttonCaps" Content="Caps Lock" Tag="Capital" Width="100" Click="Button_Click" Style="{StaticResource ButtonStyle}"/>
+                <WrapPanel Tag="Letters">
+                    <Button Name="buttonA" Content="a" Tag="A" Click="Button_Click" Style="{StaticResource ButtonStyle}"/>
+                    <Button Name="buttonS" Content="s" Tag="S" Click="Button_Click" Style="{StaticResource ButtonStyle}"/>
+                    <Button Name="buttonD" Content="d" Tag="D" Click="Button_Click" Style="{StaticResource ButtonStyle}"/>
+                    <Button Name="buttonF" Content="f" Tag="F" Click="Button_Click" Style="{StaticResource ButtonStyle}"/>
+                    <Button Name="buttonG" Content="g" Tag="G" Click="Button_Click" Style="{StaticResource ButtonStyle}"/>
+                    <Button Name="buttonH" Content="h" Tag="H" Click="Button_Click" Style="{StaticResource ButtonStyle}"/>
+                    <Button Name="buttonJ" Content="j" Tag="J" Click="Button_Click" Style="{StaticResource ButtonStyle}"/>
+                    <Button Name="buttonK" Content="k" Tag="K" Click="Button_Click" Style="{StaticResource ButtonStyle}"/>
+                    <Button Name="buttonL" Content="l" Tag="L" Click="Button_Click" Style="{StaticResource ButtonStyle}"/>
+                </WrapPanel>
+                <Button Name="buttonMult21" Content=";" Tag="Oem1" Click="Button_Click" Style="{StaticResource ButtonStyle}"/>
+                <Button Name="buttonMult22" Content="'" Tag="OemQuotes" Click="Button_Click" Style="{StaticResource ButtonStyle}"/>
+                <Button Name="buttonEnter" Content="Enter" Tag="Return" Width="90" Click="Button_Click" Style="{StaticResource ButtonStyle}"/>
+            </WrapPanel>
+            <WrapPanel>
+                <Button Name="buttonLeftShift" Content="L.Shift" Tag="LeftShift" Width="120" Click="Button_Click" Style="{StaticResource ButtonStyle}"/>
+                <WrapPanel Tag="Letters">
+                    <Button Name="buttonZ" Content="z" Tag="Z" Click="Button_Click" Style="{StaticResource ButtonStyle}"/>
+                    <Button Name="buttonX" Content="x" Tag="X" Click="Button_Click" Style="{StaticResource ButtonStyle}"/>
+                    <Button Name="buttonC" Content="c" Tag="C" Click="Button_Click" Style="{StaticResource ButtonStyle}"/>
+                    <Button Name="buttonV" Content="v" Tag="V" Click="Button_Click" Style="{StaticResource ButtonStyle}"/>
+                    <Button Name="buttonB" Content="b" Tag="B" Click="Button_Click" Style="{StaticResource ButtonStyle}"/>
+                    <Button Name="buttonN" Content="n" Tag="N" Click="Button_Click" Style="{StaticResource ButtonStyle}"/>
+                    <Button Name="buttonM" Content="m" Tag="M" Click="Button_Click" Style="{StaticResource ButtonStyle}"/>
+                </WrapPanel>
+                <Button Name="buttonMult31" Content="," Tag="OemComma" Click="Button_Click" Style="{StaticResource ButtonStyle}"/>
+                <Button Name="buttonMult32" Content="." Tag="OemPeriod" Click="Button_Click" Style="{StaticResource ButtonStyle}"/>
+                <Button Name="buttonMult33" Content="/" Tag="OemQuestion" Click="Button_Click" Style="{StaticResource ButtonStyle}"/>
+                <Button Name="buttonRightShift" Content="R.Shift" Tag="RightShift" Width="120" Click="Button_Click" Style="{StaticResource ButtonStyle}"/>
+            </WrapPanel>
+            <WrapPanel>
+                <Button Name="buttonLeftCtrl" Background="Gray" Content="R.Ctrl"  Width="80" Click="Button_Click" Foreground="White"/>
+                <Button Name="buttonWin" Content="Win" Background="Gray" Width="70" Click="Button_Click" Foreground="White"/>
+                <Button Name="buttonLeftAlt" Background="Gray" Content="R.Alt" Width="80" Click="Button_Click" Foreground="White"/>
+                <Button Name="buttonSpace" Content="" Tag="Space" Width="350" Click="Button_Click" Style="{StaticResource ButtonStyle}"/>
+                <Button Name="buttonRightAlt" Background="Gray"  Content="R.Alt" Width="80" Click="Button_Click" Foreground="White"/>
+                <Button Name="buttonRightCtrl" Content="R.Ctrl"  Background="Gray" Width="80" Click="Button_Click" Foreground="White"/>
+            </WrapPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>
